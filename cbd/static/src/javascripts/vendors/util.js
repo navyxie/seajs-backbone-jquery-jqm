@@ -1,4 +1,4 @@
-define(function(require, exports, module)){
+define(function(require, exports, module){
 	var $ = require('jquery');
 	function isType(object,type){
 		type = type || 'string';
@@ -22,7 +22,7 @@ define(function(require, exports, module)){
 			var loadTemplate = function(index){
 				var name = names[index];
 				if(self.templates[name] === undefined){
-					$.get('tpl/'+name+'.html',function(data){
+					$.get('./static/src/javascripts/tpls/'+name+'.html',function(data){
 						self.templates[name] = data;
 						if(++index < tplLength){
 							loadTemplate(index);
@@ -44,5 +44,5 @@ define(function(require, exports, module)){
 			return this.templates[name];
 		}
 	}
-	exports = UTIL;
+	module.exports = UTIL;
 })
