@@ -17,5 +17,10 @@ define(function(require){
 	TPL.loadTemplates(['item'],function(){
 		var appView = require('./views/app');
 		new appView({el:'#navy'});
+		var $ = require('jqhammer');
+		var navyObj = $('#navy').hammer();
+		navyObj.on('drag',function(e){
+			console.log(e);
+		})
 	})
 });

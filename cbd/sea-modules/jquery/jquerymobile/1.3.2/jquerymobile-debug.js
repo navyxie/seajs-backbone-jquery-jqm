@@ -17,7 +17,7 @@
 			var $ = require('jquery');
 			require('jqm-config');
 			factory( $, root, doc );
-			return $.mobile;
+			return $;
 		});
 	} else {
 		// Browser globals

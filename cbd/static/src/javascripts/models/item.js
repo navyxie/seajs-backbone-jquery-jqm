@@ -1,9 +1,10 @@
 define(function(require,exports,module){
     var BB = require('backbone');
+    var baseUrl = '/1/items';
     var itemModel = BB.Model.extend({
         idAttribute:'_id',
-        urlRoot:'staic/src/datasstatic/src/javascripts/datas/item.json',
-        url:'static/src/javascripts/datas/item.json',
+        urlRoot:baseUrl,
+        url:baseUrl,
         parse:function(response){
             return response;
         }

@@ -8,12 +8,11 @@ define(function(require,exports,module){
         className:'navyTest',
         tagName:'div',
         initialize:function(){
-            console.log('init itemview');
             this.$el = $(this.el);
             this.model.bind('change',this.render,this);           
         },
         render:function(){
-            this.$el.html(this.template(this.model.toJson()));
+            this.$el.html(this.template(this.model.toJSON()));
             return this;
         }
     });
