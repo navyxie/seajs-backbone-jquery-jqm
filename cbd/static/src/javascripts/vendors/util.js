@@ -43,6 +43,23 @@ define(function(require, exports, module){
 		get:function(name){
 			return this.templates[name];
 		}
+	};
+	UTIL.TRANSFORM = {
+		translate3d:function(jqObj,dist,speed){
+			jqObj = $(jqObj);
+	        speed = speed || 0;
+	        dist = $.extend({x:0,y:0,z:0},dist);
+	        var style = jqObj[0].style;
+	        if (!style) return;
+	        style.MozTransitionDuration = 
+	        style.msTransitionDuration = 
+	        style.OTransitionDuration = 
+	        style.transitionDuration = speed + 'ms';
+	        style.webkitTransform = 'translate(' + dist.x + 'px,'+dist.y+'px)' + 'translateZ('+dist.z+'px)';
+	        style.msTransform = 
+	        style.MozTransform = 
+	        style.OTransform = 'translate(' + dist.x + 'px,'+dist.y+'px)' + 'translateZ('+dist.z+'px)';
+		}
 	}
 	module.exports = UTIL;
 })
