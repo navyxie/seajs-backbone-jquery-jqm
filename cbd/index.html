@@ -39,7 +39,7 @@
             window.appConfig.appHost = 'http://www.chaobaida.com';
         }   
         // Set configuration
-        seajs.config({
+        var seajsConfig = {
             base: "./sea-modules/",
             alias: {
                 "jquery": "jquery/jquery/2.0.3/jquery-debug.js",
@@ -47,11 +47,14 @@
                 "underscore": "gallery/underscore/1.5.2/underscore-debug.js",
                 "backbone": "gallery/backbone/1.1.0/backbone-debug.js"
                 // "jqhammer": "jquery/jqueryhammer/1.0.6/jquery.hammer.js"
-                // "cordova":"phonegap/cordova/cordova.js",
-                // "toast":"phonegap/plugin/phonegap-toast.js"
             }
-        });
-
+        }
+        if(window.appConfig.debug === false){
+            seajsConfig.alias['cordova'] = "phonegap/cordova/cordova.js";
+            seajsConfig.alias['childbrowser'] = "phonegap/plugins/phonegap-childbrowser.js";
+            seajsConfig.alias['toast'] = "phonegap/plugins/phonegap-toast.js";
+        }
+        seajs.config(seajsConfig);
         // For development
         if (location.href.indexOf("?dev") > 0) {
             seajs.use("./static/src/javascripts/main");

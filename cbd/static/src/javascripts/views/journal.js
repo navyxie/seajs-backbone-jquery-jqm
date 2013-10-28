@@ -96,6 +96,13 @@ define(function(require,exports,module){
             var id = response.journal._id;
             var dateTime = new Date(response.journal.pubTime || response.journal.updatedAt);
             var englishM = DATE.getEnglishMonth(dateTime.getMonth());
+            // console.log('-----------------------------');
+            // console.log('response.journal.updatedAt:'+response.journal.updatedAt);
+            // console.log('response.journal.pubTime:'+response.journal.pubTime);
+            // console.log('dateTime:'+dateTime);
+            // console.log('englishM:'+englishM);
+            // console.log('getDate:'+dateTime.getDate());
+            // console.log('-----------------------------');
             var tempIndex = title.indexOf('】');
             var tempTitle1 = title.slice(0,tempIndex+1);
             var tempTitle2 = title.slice(tempIndex+1);

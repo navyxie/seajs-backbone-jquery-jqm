@@ -19,7 +19,8 @@ define(function(require,exports,module){
             if(window.appConfig.debug){
                 window.open(this.model.get('cUrl'));
             }else{
-                window.plugins.childBrowser.showWebPage(this.model.get('cUrl'),{ showLocationBar: true });
+                var childbrowser = require('childbrowser');
+                childbrowser.plugins.childBrowser.showWebPage(this.model.get('cUrl'),{ showLocationBar: true });
             }
         },
         render:function(){
