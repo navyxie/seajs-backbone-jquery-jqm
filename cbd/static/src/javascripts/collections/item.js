@@ -1,13 +1,9 @@
 define(function(require,exports,module){
+    var _ = require('underscore');
     var BB = require('backbone');
     var itemModel = require('../models/item');
-    var baseUrl = '/1/items'
     var itemCollection = BB.Collection.extend({
-        model:itemModel,
-        url:baseUrl,
-        parse:function(response){
-            return response.results;
-        }
+        model:itemModel
     });
     module.exports = itemCollection;
 })

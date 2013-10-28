@@ -13,9 +13,8 @@
 (function ( root, doc, factory ) {
 	if ( typeof define === "function" && define.cmd ) {
 		// CMD. Register as an anonymous module.
-		define( [ "jquery","jqm-config" ], function ( require, exports, module) {
+		define( [ "jquery"], function ( require, exports, module) {
 			var $ = require('jquery');
-			require('jqm-config');
 			factory( $, root, doc );
 			return $;
 		});
