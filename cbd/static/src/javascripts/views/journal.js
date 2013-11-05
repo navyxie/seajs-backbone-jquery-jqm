@@ -1,6 +1,6 @@
 define(function(require,exports,module){
 	var _ = require('underscore'),BB = require('backbone'),UTIL = require('../vendors/util'),$ = require('jquery');
-    var waterFallCol = 2,WaterFall = UTIL.WaterFall,DATE = UTIL.Date,LOAD = UTIL.LOAD,setWaterFalColWidth = false,winObj = $(window),winHeight = winObj.height(),headerHeight = $('.header').height();
+    var waterFallCol = 2,WaterFall = UTIL.WaterFall,DATE = UTIL.Date,LOAD = UTIL.LOAD,setWaterFalColWidth = false,winObj = $(window),winHeight = winObj.height(),winWidth = winObj.width() ,headerHeight = $('.header').height();
 	var journalView = BB.View.extend({
 		className:'journalView',
 		initialize:function(){
@@ -20,9 +20,9 @@ define(function(require,exports,module){
 		    self.journalModel = new (require('../models/journal'));
             self.waterObj = new WaterFall(waterFallCol);
             self.$el = $(self.el);
-            self.contentObj = $('<div class="journalContainer"></div>').appendTo(self.$el);
-            self.journalTitleObj = $('<div class="journalTitle"></div>').appendTo(self.contentObj);
-            self.journalContentObj = $('<div class="journalContent"></div>').appendTo(self.contentObj).append(self.waterObj.makeColHtml());
+            self.contentObj = $('<div class="journalContainer" style="width:'+winWidth+'px"><div class="subJournalContainer"></div></div>').appendTo(self.$el);
+            self.journalTitleObj = $('<div class="journalTitle"></div>').appendTo(self.contentObj.find('.subJournalContainer'));
+            self.journalContentObj = $('<div class="journalContent"></div>').appendTo(self.contentObj.find('.subJournalContainer')).append(self.waterObj.makeColHtml());
             self.waterFallObj = self.journalContentObj.find('.waterCol'); 
             if(!setWaterFalColWidth){
             	setWaterFalColWidth = true;
@@ -34,7 +34,8 @@ define(function(require,exports,module){
             self.itemCollection.bind('reset',self.addAll,self); 
          	self.firstLoad();
             self.scrollHandler();
-            self.journalModel.bind('change',self.render,this);    
+            self.journalModel.bind('change',self.render,this); 
+            self.$el.width(winWidth*(self.$el.find('.journalContainer').length));   
         },
         firstLoad:function(){
         	var self = this;
@@ -94,7 +95,8 @@ define(function(require,exports,module){
             // show journal title view start			
             var title = response.journal.tle;
             var id = response.journal._id;
-            var dateTime = new Date(response.journal.pubTime || response.journal.updatedAt);
+            //var dateTime = new Date(response.journal.pubTime || response.journal.updatedAt);
+            var dateTime = new Date(DATE.translateIOSDate(response.journal.pubTime || response.journal.updatedAt));
             //dateTime这里的时间转化有问题，自行处理
             var englishM = DATE.getEnglishMonth(dateTime.getMonth());
             // console.log('-----------------------------');

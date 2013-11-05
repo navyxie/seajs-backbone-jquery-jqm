@@ -18,13 +18,21 @@ img{
 	user-select:none;
 }
 .appContent{
-	width: 100%;
-	max-width: 640px;
-	margin: auto;
+	width: 100%;		
 	min-height: 800px;	
 	padding: 0;
 	background: #F1E4EB;
+	overflow:hidden;
+	.journalContainer{
+		width:100%;
+		float:left;
+		.subJournalContainer{
+			max-width: 640px;
+			margin: auto;
+		}
+	}
 	.journalContent{
+		
 		padding: 10px;
 		padding-top: 0;
 		overflow: hidden;
