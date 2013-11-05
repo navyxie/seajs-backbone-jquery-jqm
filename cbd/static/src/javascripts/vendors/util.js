@@ -96,7 +96,10 @@ define(function(require, exports, module){
 			var timestamp = new Date().getTime();
 			timestamp = new Date(timestamp + daySpace*24*60*60*1000);
 			return timestamp.getFullYear()+split+(1+timestamp.getMonth())+split+timestamp.getDate()
-		}
+		},
+        translateIOSDate:function(date){
+            return date.substr(0,date.indexOf('T')).split('-').join('/')
+        }
 	}
 	UTIL.TRANSFORM = {
         translate3d:function(jqObj,dist,speed){
