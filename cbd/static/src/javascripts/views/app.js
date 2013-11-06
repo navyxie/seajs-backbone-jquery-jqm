@@ -50,72 +50,8 @@ define(function(require,exports,module){
             return this;
         },
         animate:function(){
-            var self = this;
-            $('body').on('vmousemove vmousedown vmouseup vmouseout swipeleft swiperight','.appPage',function(e){
-                var _this = $(this);
-                var appContentObj = _this.find('.appContent');
-                var journalContainerObjs = _this.find('.journalContainer');
-                if(_this.hasClass('appPage')){                   
-                    switch(e.type){
-                        case 'vmousedown':
-                            mouseObj.flag = true;
-                            mouseObj.x = e.pageX;
-                            mouseObj.y = e.pageY;
-                            return false;
-                            break;
-                        case 'vmousemove':
-                            if(mouseObj.flag){
-                                if(mouseObj.count === 1){
-                                    if(e.pageX-mouseObj.x >= 100){
-                                        TRANSFORM.translate3d(appContentObj,{x:100},100);
-                                    }else{
-                                        TRANSFORM.translate3d(appContentObj,{x:e.pageX-mouseObj.x},100);
-                                    }
-                                }else{
-                                    TRANSFORM.translate3d(appContentObj,{x:-(e.pageX-mouseObj.x+mouseObj.count*winWidth)},100);
-                                }
-                                
-                            }
-                            return false;
-                            break;
-                        case 'vmouseup':
-                        case 'vmouseout':
-                            if(mouseObj.flag){
-                                if(mouseObj.count === 1){
-                                    TRANSFORM.translate3d(appContentObj,{x:0},100);
-                                }else{
-                                    if(e.pageX - mouseObj.x >= 0){
-                                        TRANSFORM.translate3d(appContentObj,{x:-winWidth*(mouseObj.count)},100);
-                                        mouseObj.count++;
-                                        //winWidth
-                                    }else if(e.pageX - mouseObj.x < 0){
-                                        TRANSFORM.translate3d(appContentObj,{x:-winWidth*(mouseObj.count-1)},100);
-                                        mouseObj.count--;
-                                    }
-                                }                              
-                            }
-                            mouseObj.flag = false;
-                            return false;
-                            break;
-                        case 'swipeleft':
-                            TRANSFORM.translate3d(appContentObj,{x:-winWidth*(mouseObj.count)},100);
-                            mouseObj.count++;
-                            return false;
-                            break;
-                        case 'swiperight':
-                            if(mouseObj.count === 1){
-                                TRANSFORM.translate3d(appContentObj,{x:0},100);
-                            }else{
-                                TRANSFORM.translate3d(appContentObj,{x:-winWidth*(mouseObj.count-1)},100);
-                                mouseObj.count--;
-                            }                           
-                            return false;
-                            break;
-                    }
-                    return false;
-                }
-                
-            });
+            new TRANSFORM.slideCore({wrapper:'#index',container:'.appContent',target:'.journalContainer'},{marginR:0});
+            return this;
         },
         changeNav:function(e){
             var self = this;
