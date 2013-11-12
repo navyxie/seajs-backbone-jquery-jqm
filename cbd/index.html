@@ -13,7 +13,7 @@
 <body>
     <div id="gloabLoading"><img src="./static/src/images/loading.gif" class="loading"/><br /><span class="loadingTxt">loading...</span></div>
     <header data-role="header"class="header fixedBar">首页</header>
-    <div data-role="page" id="index" class="appPage">       
+    <div data-role="page" id="index" class="appPage">    
         <section data-role="content" class="appContent" id="indexContent"></section>       
     </div>
     <div data-role="page" id="newest" class="appPage">
@@ -47,12 +47,16 @@
                 "underscore": "gallery/underscore/1.5.2/underscore-debug.js",
                 "backbone": "gallery/backbone/1.1.0/backbone-debug.js"
                 // "jqhammer": "jquery/jqueryhammer/1.0.6/jquery.hammer.js"
+            },
+            vars:{
+                jsPre:'.min'
             }
         }
         if(window.appConfig.debug === false){
             seajsConfig.alias['cordova'] = "phonegap/cordova/cordova.js";
             seajsConfig.alias['childbrowser'] = "phonegap/plugins/phonegap-childbrowser.js";
             seajsConfig.alias['toast'] = "phonegap/plugins/phonegap-toast.js";
+            seajsConfig.alias['message'] = "phonegap/plugins/phonegap-cbdmessage.js";
         }
         seajs.config(seajsConfig);
         // For development

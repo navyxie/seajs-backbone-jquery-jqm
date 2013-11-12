@@ -95,6 +95,7 @@ define(function(require,exports,module){
             var title = response.journal.tle;
             var id = response.journal._id;
             var dateTime = new Date(response.journal.pubTime || response.journal.updatedAt);
+            //dateTime这里的时间转化有问题，自行处理
             var englishM = DATE.getEnglishMonth(dateTime.getMonth());
             // console.log('-----------------------------');
             // console.log('response.journal.updatedAt:'+response.journal.updatedAt);

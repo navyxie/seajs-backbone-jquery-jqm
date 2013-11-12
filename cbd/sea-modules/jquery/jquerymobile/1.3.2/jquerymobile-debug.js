@@ -10,10 +10,10 @@
 */
 
 
-(function ( root, doc, factory ) {
+;(function ( root, doc, factory ) {
 	if ( typeof define === "function" && define.cmd ) {
 		// CMD. Register as an anonymous module.
-		define( [ "jquery"], function ( require, exports, module) {
+		define([ "jquery"],function ( require, exports, module) {
 			var $ = require('jquery');
 			factory( $, root, doc );
 			return $;
